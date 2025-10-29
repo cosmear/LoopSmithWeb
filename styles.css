@@ -28,8 +28,9 @@ body {
   margin: 0 auto;
 }
 
+/* ---------- NAVBAR ---------- */
 .navbar {
-  background-color: #8B8589; /* taupe gray */
+  background-color: #8B8589; /* color uniforme con el resto del sitio */
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
@@ -41,47 +42,26 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   position: relative;
 }
-
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
 
 .brand-logo {
-  height: 100px;
+  height: 108px; /* ajustá si querés más chico o grande */
   width: auto;
   display: block;
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.brand-main {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #307351; /* verde profundo */
-}
-
-.brand-sub {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #631D76; /* púrpura acento */
-}
-
-/* Links en desktop */
+/* ---------- LINKS DESKTOP ---------- */
 .nav-links {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  flex-wrap: wrap;
   position: static;
   background: transparent;
   box-shadow: none;
@@ -98,7 +78,7 @@ body {
   color: #307351;
 }
 
-/* Botón outline (Hablemos) */
+/* ---------- BOTÓN OUTLINE ---------- */
 .btn-outline {
   border: 2px solid #1a1a1a;
   border-radius: 999px;
@@ -116,20 +96,18 @@ body {
 }
 
 /* ---------- HAMBURGUESA ---------- */
-
 .nav-toggle {
   background: none;
   border: none;
   padding: 0.5rem;
-  margin-left: auto; /* 👈 fuerza a ir al extremo derecho */
+  margin-left: auto; /* fuerza el botón al extremo derecho */
   cursor: pointer;
-  display: none;
+  display: none; /* solo visible en mobile */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.35rem;
 }
-
 
 .burger-line {
   width: 24px;
@@ -141,30 +119,25 @@ body {
 
 /* ---------- MOBILE / TABLET ---------- */
 @media (max-width: 900px) {
-  /* Mostramos el botón hamburguesa */
   .nav-toggle {
     display: flex;
   }
 
-  /* nav-links pasa a ser un panel flotante */
   .nav-links {
     position: absolute;
     top: 100%;
     right: 0;
     left: 0;
     background-color: #dbd2c8;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-
     padding: 1rem 1.25rem 1.5rem;
     display: none; /* cerrado por defecto */
   }
 
-  /* Links más grandes en mobile */
   .nav-links a {
     font-size: 1rem;
     width: 100%;
@@ -175,12 +148,12 @@ body {
     border-radius: 0.5rem;
   }
 
-  /* Cuando el menú está abierto le vamos a agregar la clase .open con JS */
+  /* Menú abierto */
   .nav-links.open {
     display: flex;
   }
 
-  /* Animación hamburguesa a "X" cuando está abierto */
+  /* Animación hamburguesa -> X */
   .nav-toggle.active .burger-line:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -190,20 +163,7 @@ body {
   .nav-toggle.active .burger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
-
-  /* Ajustes tipográficos de la marca en pantallas chicas */
-  .brand-main {
-    font-size: 1rem;
-  }
-  .brand-sub {
-    font-size: 0.65rem;
-  }
-
-  .brand-logo {
-    height: 40px;
-  }
 }
-
 /* HERO */
 .hero {
   position: relative;
@@ -432,21 +392,40 @@ body {
 }
 
 .btn-secondary {
-  align-self: flex-start;
-  background-color: #C7EA46;
-  color: #1a1a1a;
-  text-decoration: none;
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(45deg, #307351, #631D76, #C7EA46);
+  background-size: 100% auto;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.9rem 1.5rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.9rem 1.25rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 24px rgba(199,234,70,0.3);
-  transition: all 0.18s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 0 0 0 rgba(99, 29, 118, 0.4);
 }
 
 .btn-secondary:hover {
-  background-color: #d8ff4a;
-  box-shadow: 0 12px 32px rgba(199,234,70,0.45);
+  background-position: right center;
+  background-size: 200% auto;
+  animation: pulseLoopsmith 1.6s infinite;
+}
+
+/* ANIMACIÓN DE “PULSO” */
+@keyframes pulseLoopsmith {
+  0% {
+    box-shadow: 0 0 0 0 rgba(199, 234, 70, 0.45); /* verde lima */
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(199, 234, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(199, 234, 70, 0);
+  }
 }
 
 /* FOOTER */
@@ -500,3 +479,197 @@ body {
     gap: 1rem 1.25rem;
   }
 }
+
+/* ----------------------------
+   EQUIPO / NUESTRO EQUIPO
+----------------------------- */
+
+.team-body {
+ background: radial-gradient(circle at 0% 0%, rgba(99, 29, 118, 0.25) 0%, rgba(48, 115, 81, 0.8) 60%);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-section {
+  flex: 1;
+  padding: 5rem 0 3rem;
+  color: #fff;
+}
+
+.team-title {
+  font-size: clamp(2rem, 1.2vw + 1.6rem, 2.75rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.team-intro {
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  color: #dbd2c8;
+}
+
+/* Tarjetas del equipo */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem; /* más aire entre las tarjetas */
+  margin-top: 2rem;
+}
+
+.team-card {
+  width: 300px; /* más anchas */
+  height: 360px; /* más altas */
+  background: #101010; /* gris oscuro */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 22px;
+  color: #fff;
+  text-align: center;
+  font-family: inherit;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px) scale(1.04);
+}
+
+/* Borde animado */
+.team-card::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 140%;
+  background-image: linear-gradient(
+    180deg,
+    #C7EA46, /* verde lima */
+    #631D76  /* púrpura */
+  );
+  animation: rotateBorder 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fondo interior */
+.team-card::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 18px;
+  background: #1a1a1a;
+  z-index: 0;
+}
+
+/* Contenido */
+.team-card .team-avatar {
+  width: 90px;
+  height: 90px;
+  background-color: #C7EA46;
+  color: #307351;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-avatar {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.team-card h3 {
+  z-index: 1;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.team-card .role {
+  z-index: 1;
+  color: #C7EA46;
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+
+.team-card .desc {
+  z-index: 1;
+  font-size: 1rem;
+  color: #dbd2c8;
+  line-height: 1.6;
+  padding: 0 1rem;
+  max-width: 240px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .team-card {
+    width: 85%;
+    height: auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .team-grid {
+    gap: 2rem;
+  }
+}
+
+/* Avatar / iniciales */
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #C7EA46;
+  color: #307351;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+  transition: transform 0.4s ease;
+}
+.team-card:hover .team-avatar {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.team-card h3 {
+  margin-bottom: 0.25rem;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.team-card .role {
+  color: #C7EA46;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.team-card .desc {
+  font-size: 0.95rem;
+  color: #dbd2c8;
+  line-height: 1.5;
+}
+
