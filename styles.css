@@ -1,0 +1,393 @@
+/* -------------------------
+   PALETA (referencia)
+   #8B8589  (taupe gray)        fondo neutro / texto secundario
+   #C7EA46  (lime pear)         color principal / acento
+   #631D76  (púrpura)           acento contraste
+   #A8DADC  (azul suave)        fondo suave / blocks
+   #307351  (verde profundo)    profundidad / fondos oscuros
+   #dbd2c8  (naranja claro)     fondos claros / tipografía cálida
+---------------------------- */
+
+/* RESET SUAVE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a1a1a;
+  background-color: #dbd2c8; /* base cálida */
+  line-height: 1.5;
+}
+
+/* Contenedor ancho fijo tipo landing */
+.container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+/* NAVBAR (actualizado con logo) */
+.navbar {
+  background-color: #8B8589;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  height: 100px; /* ajustá según tamaño real */
+  width: auto;
+  display: block;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-main {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #307351; /* verde profundo */
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #631D76; /* púrpura acento */
+}
+
+/* Resto del nav igual */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.nav-links a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #307351;
+}
+
+/* botón outline en nav (Hablemos) */
+.btn-outline {
+  border: 2px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  line-height: 1;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+.btn-outline:hover {
+  background-color: #C7EA46;
+  border-color: #C7EA46;
+  color: #1a1a1a;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(48,115,81,0.75) 0%, rgba(0,0,0,0.8) 60%);
+  /* mezcla verde profundo + overlay oscuro estilo "serio consultora" */
+}
+
+.hero-content {
+  position: relative;
+  max-width: 700px;
+  padding: 4rem 0;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.1vw + 1.6rem, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #A8DADC; /* azul suave para contraste sobre oscuro */
+  max-width: 40ch;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 2rem;
+  background-color: #C7EA46; /* lima enérgico */
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(199,234,70,0.3);
+  transition: all 0.18s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d8ff4a;
+  box-shadow: 0 12px 32px rgba(199,234,70,0.45);
+}
+
+/* EYEBROW / etiqueta pequeña arriba del título */
+.eyebrow {
+  color: #631D76;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* SOMOS */
+.about {
+  padding: 4rem 0;
+  color: #1a1a1a;
+}
+
+.about-header {
+  margin-bottom: 2rem;
+}
+
+.about-title {
+  font-size: clamp(1.8rem, 0.5vw + 1.5rem, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  letter-spacing: -0.03em;
+}
+
+.about-content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr minmax(240px, 320px);
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+/* tarjeta quote */
+.about-card {
+  background-color: #307351;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 1px; /* truco para borde-gradiente más adelante */
+  display: flex;
+  align-items: stretch;
+}
+
+.about-card-inner {
+  background: radial-gradient(circle at 0% 0%, rgba(99,29,118,0.4) 0%, rgba(48,115,81,0) 60%);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.quote {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.sig {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #C7EA46;
+  font-weight: 600;
+}
+
+/* SERVICIOS */
+.services {
+  background-color: #A8DADC;
+  padding: 4rem 0;
+  color: #1a1a1a;
+}
+
+.services-title {
+  font-size: clamp(1.6rem, 0.5vw + 1.2rem, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  letter-spacing: -0.03em;
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.service-item {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border: 2px solid rgba(0,0,0,0.05);
+}
+
+.service-item h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #307351;
+  margin-bottom: 0.5rem;
+}
+
+.service-item p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+/* CONTACT CTA */
+.contact-cta {
+  background-color: #307351;
+  color: #fff;
+  padding: 3rem 0;
+}
+
+.contact-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.contact-text h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.contact-text p {
+  font-size: 0.95rem;
+  color: #A8DADC;
+  max-width: 45ch;
+  line-height: 1.5;
+}
+
+.btn-secondary {
+  align-self: flex-start;
+  background-color: #C7EA46;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(199,234,70,0.3);
+  transition: all 0.18s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #d8ff4a;
+  box-shadow: 0 12px 32px rgba(199,234,70,0.45);
+}
+
+/* FOOTER */
+.footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 2rem 0;
+  font-size: 0.85rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.footer-brand {
+  color: #fff;
+  font-weight: 500;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-nav a {
+  color: #A8DADC;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: #C7EA46;
+}
+
+/* RESPONSIVE AJUSTES */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem 1.25rem;
+  }
+}
