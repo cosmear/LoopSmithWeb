@@ -14,6 +14,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -39,10 +42,10 @@ body {
 
 .nav-inner {
   display: flex;
-  align-items: center;
+  align-items: center;       /* mantiene todo centrado verticalmente */
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 1rem 0;
+  padding: 0.5rem 1.25rem;   /* menos espacio vertical para móviles */
   position: relative;
 }
 
@@ -52,9 +55,10 @@ body {
 }
 
 .brand-logo {
-  height: 108px; /* ajustá si querés más chico o grande */
+  height: 90px; /* tamaño cómodo en escritorio */
   width: auto;
   display: block;
+  transition: height 0.3s ease;
 }
 
 /* ---------- LINKS DESKTOP ---------- */
@@ -100,7 +104,7 @@ body {
   background: none;
   border: none;
   padding: 0.5rem;
-  margin-left: auto; /* fuerza el botón al extremo derecho */
+  
   cursor: pointer;
   display: none; /* solo visible en mobile */
   flex-direction: column;
@@ -121,6 +125,8 @@ body {
 @media (max-width: 900px) {
   .nav-toggle {
     display: flex;
+    align-self: center;
+    margin-left: 75%;
   }
 
   .nav-links {
@@ -163,7 +169,94 @@ body {
   .nav-toggle.active .burger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
+  .brand-logo {
+    height: 60px; /* logo más pequeño en celulares */
+  }
+
+   .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand {
+    display: flex;
+    align-items: center;         /* centra verticalmente el logo dentro del contenedor */
+  }
+ 
+
 }
+
+/* ============================
+   SELECTOR DE IDIOMA
+============================ */
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+}
+
+.lang-button {
+  background-color: #8B8589;
+  color: #1a1a1a;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid #1a1a1a;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-button:hover {
+background-color: #C7EA46;
+  border-color: #C7EA46;
+  color: #307351;
+}
+
+/* Dropdown container */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  z-index: 100;
+  min-width: 160px;
+  background-color: #8B8589;
+  border: 2px solid #C7EA46;
+  border-radius: 0 15px 15px 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* Links */
+.dropdown-content a {
+  color: #1a1a1a;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover {
+  background-color: #C7EA46;
+  color: #1a1a1a;
+}
+
+/* Mostrar dropdown al hover o click */
+.language-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Pequeño ajuste responsive */
+@media (max-width: 900px) {
+  .language-dropdown {
+    width: 100%;
+  }
+  .dropdown-content {
+    left: 0;
+    right: auto;
+  }
+}
+
 /* HERO */
 .hero {
   position: relative;
@@ -479,6 +572,116 @@ body {
     gap: 1rem 1.25rem;
   }
 }
+
+/* ================================
+   Tarjeta ampliada (popup)
+=================================*/
+.service-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.service-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.service-popup {
+  position: relative;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  width: min(90%, 600px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  transform: scale(0.8) translateY(30px);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+.service-overlay.active .service-popup {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.service-popup h3 {
+  color: #C7EA46;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.service-popup p {
+  color: #dbd2c8;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #C7EA46;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.close-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+.service-popup ul {
+  text-align: left;
+  margin: 0.5rem 0 0.5rem 1.2rem;
+  list-style: disc;
+  color: #A8DADC;
+}
+.service-popup strong {
+  color: #C7EA46;
+}
+
+@media (max-width: 900px) {
+  .service-overlay {
+    align-items: flex-start; /* popup anclado arriba, no centrado */
+    padding-top: 15rem;     /* agrega margen superior */
+  }
+
+  .service-popup {
+    margin-top: 1.5rem;      /* espacio adicional arriba */
+    width: 90%;
+    padding: 1.8rem;
+    max-height: 85vh;        /* más espacio vertical disponible */
+  }
+}
+
+@media (max-width: 600px) {
+  .service-overlay {
+    padding-top: 6rem;       /* más margen superior en celulares */
+  }
+
+  .service-popup {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    width: 92%;
+  }
+}
+
+
+
+
+
+
+
 
 /* ----------------------------
    EQUIPO / NUESTRO EQUIPO
